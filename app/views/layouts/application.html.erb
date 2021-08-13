@@ -1,15 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang='ja'>
   <head>
-    <title>LeoRecipe</title>
+    <title>PITARI cook</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Bootstrap CSS JS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
+   <header class="header">
+    <div class="header_left_box">
+     <div class="app_title_btn"><%= link_to "PITARI cook", root_path, class:"app_title_link" %></div>
+    </div>
+    <div class="header_right_box">
+     <% if user_signed_in? %>
+      <div class="header_link_btn"><%= link_to "レシピ投稿", root_path, class:"header_link" %></div>
+      <div class="header_link_btn"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class:"header_link" %></div>
+     <% else%>
+      <div class="header_link_btn"><%= link_to "新規会員登録", new_user_registration_path, class:"header_link" %></div>
+      <div class="header_link_btn"><%= link_to "ログイン", new_user_session_path, class:"header_link" %></div>
+     <% end %>
+    </div>
+   </header>
+   <div class="main">
     <%= yield %>
+   </div>
+   <footer class="footer">
+    <div class="copyright">Copyright(C) leo_note(https://github.com/leo-note) ALL RIGHTS RESERVED.</div>
+   </footer>
   </body>
 </html>
