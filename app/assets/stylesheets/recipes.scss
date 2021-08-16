@@ -1,3 +1,14 @@
-// Place all the styles related to the recipes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* index */
+.greeting_message {
+  text-align: center;
+  color: #800000;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.user_name_link {
+  text-decoration: none;
+  color: #800000;
+  text-shadow: 1px 1px 2px silver;
+}
+

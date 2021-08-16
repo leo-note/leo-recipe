@@ -1,0 +1,46 @@
+<div class="mypage_main">
+ <%# 見出し %>
+ <div class="top_message">
+   <%= @user.nickname %>さんのマイページ
+ </div>
+
+ <%# ログイン情報 %>
+ <div class="login_profile" >
+  <h6 class="block_title">ログイン情報</h6>
+  <table class="table">
+   <thead>
+    <tr claas>
+      <th scope="col">nickname</th>
+      <th scope="col">email</th>
+    </tr>
+    </thead>
+   <tbody>
+    <tr>
+      <td><%= @user.nickname %></td>
+      <td><%= @user.email %></td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+
+ <%# プロフィール情報 %>
+ <div class="user_profile">
+  <h6 class="block_title">プロフィール</h6>
+ </div>
+
+ <%# プレゼント申込履歴 %>
+ <div class="present_application">
+  <h6 class="block_title">プレゼント申込履歴</h6>
+ </div>
+
+ <%# クリップ一覧 %>
+ <div class="clip_index">
+  <h6 class="block_title">クリップしたレシピ</h6>
+ </div>
+
+ <%# 投稿一覧 %>
+ <div class="recipe_index">
+  <h6 class="block_title">クリップしたレシピ</h6>
+ </div>
+
+</div>

@@ -1,3 +1,4 @@
+/** ビューファイル共通要素のスタイル **/
 /* ヘッダー */
 .header {
   background-image: image-url("checks.jpg");
@@ -57,7 +58,8 @@
 .form_title{
   color: #800000;
   font-weight: bold;
-  text-decoration: underline #800000;
+  background: #FFF5EE;
+  border-bottom: double #800000;
   font-size: 20px;
 }
 

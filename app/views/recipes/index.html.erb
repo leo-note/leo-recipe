@@ -1,0 +1,6 @@
+<div class="greeting_message" >
+ <% if user_signed_in? %>
+  <%= link_to current_user.nickname, user_path(current_user.id), class:"user_name_link" %>さん、こんにちは！
+ <% end%>
+ 今日のご飯は何にしますか？
+</div>
