@@ -1,3 +1,6 @@
+java_home = '/usr/lib/jvm/java-6-openjdk'
+ENV['JAVA_HOME'] = java_home if Dir.exist?(java_home)
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
