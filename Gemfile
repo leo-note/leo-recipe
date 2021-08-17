@@ -1,6 +1,3 @@
-java_home = '/usr/lib/jvm/java-6-openjdk'
-ENV['JAVA_HOME'] = java_home if Dir.exist?(java_home)
-
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -30,6 +27,10 @@ gem 'jbuilder', '~> 2.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+
+group :production do
+  gem 'unicorn', '5.4.1'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
