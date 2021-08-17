@@ -26,9 +26,9 @@
 - belongs_to :user
 - has_many :comments
 - has_many :recipe_materials
-- has_many :materials, through :recipe_materials
+- has_many :materials, through: :recipe_materials
 - has_many :clip_recipes
-- has_many :clips, through :clip_recipes
+- has_many :clips, through: :clip_recipes
 
 ### Other
 - using ActiveStorage and ActiveHash(category)
@@ -51,9 +51,9 @@
 
 ### association
 - has_many :recipe_materials
-- has_many :recipes, through :recipe_materials
+- has_many :recipes, through: :recipe_materials
 - has_many :allergy_materials
-- has_many :allergies, through :allergy_materials
+- has_many :allergies, through: :allergy_materials
 
 ## clips テーブル
 | Column                 | Type       | Options                       |
@@ -63,7 +63,7 @@
 ### association 
 - belongs_to :user
 - has_many :clip_recipes
-- has_many :recipes, through :clip_recipes
+- has_many :recipes, through: :clip_recipes
 
 ## clip_recipes テーブル
 | Column                 | Type       | Options                       |
@@ -78,8 +78,8 @@
 ## profiles テーブル
 | Column                 | Type       | Options                       |
 | -----------------------|------------|------------------------------ |
-| gender_id              | integer    |                               |
-| family_structure_id    | integer    |                               |
+| gender_id              | integer    | null:false                    |
+| family_structure_id    | integer    | null:false                    |
 | taste_id               | integer    | null:false                    | 
 | user                   | references | null: false,foreign_key: true |
 
@@ -98,7 +98,7 @@
 ### association 
 - belongs_to :profile
 - has_many :allergy_materials
-- has_many :materials, through :allergy_materials
+- has_many :materials, through: :allergy_materials
 
 ## allergy_materials テーブル
 | Column                 | Type       | Options                       |

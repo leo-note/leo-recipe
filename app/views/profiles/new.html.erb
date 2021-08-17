@@ -1,0 +1,36 @@
+<div class="form_main">
+ <%= form_with model: @profiles_form, url: user_profiles_path(params[:user_id]), local: true do |f| %>
+  <div class="form_title">プロフィール登録</div>
+  <%= render "shared/error_messages", model: f.object %>
+
+  <div class="form_input"> 
+    <div class="col-12"> 
+     <%= f.label "性別", class:"form-label" %><br />
+     <%= f.collection_select(:gender_id, Gender.all, :id, :name, {}, {class:"form-control", id:"profile-gender"}) %>
+    </div>
+
+    <div class="col-12"> 
+     <%= f.label "家族構成", class:"form-label" %><br />
+     <%= f.collection_select(:family_structure_id, FamilyStructure.all, :id, :name, {}, {class:"form-control", id:"profile-family-structure"}) %>
+    </div>
+
+    <div class="col-12"> 
+     <%= f.label "味の好み", class:"form-label" %><br />
+     <%= f.collection_select(:taste_id, Taste.all, :id, :name, {}, {class:"form-control", id:"profile-taste"}) %>
+    </div>
+
+    <div class="col-12"> 
+     <%= f.label "アレルギー食材", class:"form-label" %><br />
+     <%= f.text_field :name, class:"form-control", id: "material_name", placeholder: "例：蕎麦", maxlength: "20" %>
+     <div class="form-text">
+      全角で入力してください。1つまでしか登録できません。
+     </div> 
+    </div>
+  </div>
+
+  <div class="form_btn">
+   <%= f.submit "登録", class:"btn btn-danger btn-sm"%>
+   <%= link_to "戻る", user_path(params[:user_id]), class:"btn btn-light btn-sm" %>
+  </div> 
+ <% end %>
+</div>
