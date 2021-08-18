@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: leo_recipe_production
-  username: leo_recipe
-  password: <%= ENV['LEO_RECIPE_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
