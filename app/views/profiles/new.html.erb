@@ -21,9 +21,14 @@
 
     <div class="col-12"> 
      <%= f.label "アレルギー食材", class:"form-label" %><br />
-     <%= f.text_field :name, class:"form-control", id: "material_name", placeholder: "例：蕎麦", maxlength: "20" %>
+     <%= f.text_field :name, class:"form-control", id: "material_name", placeholder: "例：カニ", maxlength: "20" %>
+     <%# ローカル環境でrjbを導入する場合 %>
+     <%#div class="form-text"%>
+      <%# 全角で入力してください。1つまでしか登録できません。%>
+     <%#/div%> 
+     <%# romajiのみを利用する場合 %>
      <div class="form-text">
-      全角で入力してください。1つまでしか登録できません。
+      全角かな・カナで入力してください。1つまでしか登録できません。
      </div> 
     </div>
   </div>
