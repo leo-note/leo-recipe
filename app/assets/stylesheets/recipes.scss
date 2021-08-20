@@ -7,7 +7,8 @@
   font-weight: bold;
 }
 
-.user_name_link {
+.user_name_link, .title_name_link{
+  font-weight: bold;
   text-decoration: none;
   color: #800000;
   text-shadow: 1px 1px 2px silver;
@@ -43,7 +44,47 @@
   font-size: 15px;
 }
 
+.fit_image{
+  width: 100%;
+  object-fit: cover;
+  height: 150px;
+  }
+
 /*  new */
 .material {
   display: flex;
+}
+
+/* show */
+.recipe_main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.recipe_photo {
+  margin-top: 20px;
+  width: 30%;
+  height: 15%;
+}
+
+.recipe_topics,  .recipe_materials, .recipe_text {
+  margin-top: 20px;
+  width: 30%;
+}
+
+.topics_top_block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.topics_user_name, .topics_category_name {
+  color:#800000;
+  font-size: 15px;
+}
+
+.material_title, .text_title{
+  border-bottom: solid 1px;
+  color:#800000;
 }

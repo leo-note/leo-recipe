@@ -5,5 +5,5 @@ Rails.application.routes.draw do
     resources :profiles, only: [:new, :create]
   end
 
-  resources :recipes, only: [:index, :new, :create]
+  resources :recipes, only: [:index, :new, :create, :show]
 end
