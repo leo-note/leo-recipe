@@ -12,4 +12,5 @@ class User < ApplicationRecord
 
   # アソシエーション
   has_one :profile
+  has_many :recipes
 end

@@ -3,7 +3,7 @@
   <div class="form_title">プロフィール登録</div>
   <%= render "shared/error_messages", model: f.object %>
 
-  <div class="form_input"> 
+  <div class="form_input">
     <div class="col-12"> 
      <%= f.label "性別", class:"form-label" %><br />
      <%= f.collection_select(:gender_id, Gender.all, :id, :name, {}, {class:"form-control", id:"profile-gender"}) %>

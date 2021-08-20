@@ -1,6 +1,29 @@
+<%# あいさつ部分 %>
 <div class="greeting_message" >
  <% if user_signed_in? %>
   <%= link_to current_user.nickname, user_path(current_user.id), class:"user_name_link" %>さん、こんにちは！
  <% end%>
  今日のご飯は何にしますか？
+</div>
+
+<%# 検索box %>
+
+<%# 新着レシピ %>
+<div class="recipes_content">
+  <div class="recipes_content_title">新着レシピ</div>
+  <div class="recipe_lists container">
+     <div class="row">
+     <% @recipes.each do |recipe| %>
+       <div class="card col-12 m-1" style="width: 16rem;">
+        <%= image_tag recipe.image, class:"card-img-top w-100 h-100" %>
+        <div class="card-body">
+          <h5 class="card-title recipe_title"><%= recipe.title %></h5>
+          <h5 class='user_name'>
+           <%= link_to recipe.user.nickname, user_path(recipe.user.id), class:"user_name_link" %>さんの投稿
+          </h6>
+        </div>
+       </div>
+     <% end %>
+    </div>
+  </div>
 </div>

@@ -8,18 +8,22 @@
     <%= flash[:alert] %>
   </div>
 
-  <div class="form_input"> 
+  <div class="form_input">
+   <div class="container-fluid">
+    <div class="row">
     
-    <div class="col-12"> 
-     <%= f.label :email, class:"form-label" %><br />
-     <%= f.email_field :email, class:"form-control", id: "email", placeholder: "email", autofocus: true %>
-    </div>
+     <div class="col-8"> 
+      <%= f.label :email, class:"form-label" %><br />
+      <%= f.email_field :email, class:"form-control", id: "email", placeholder: "email", autofocus: true %>
+     </div>
 
-    <div class="col-12"> 
-     <%= f.label :password, class:"form-label" %><br />
-     <%= f.password_field :password, class:"form-control", id: "password", placeholder: "password" %>
-    </div>
+     <div class="col-8"> 
+      <%= f.label :password, class:"form-label" %><br />
+      <%= f.password_field :password, class:"form-control", id: "password", placeholder: "password" %>
+     </div>
 
+    </div>
+   </div>
   </div>
 
   <div class="form_btn">

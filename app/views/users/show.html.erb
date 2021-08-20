@@ -4,6 +4,7 @@
    <%= @user.nickname %>さんのマイページ
  </div>
 
+ <% if user_signed_in? &&@user.id == current_user.id %>
  <%# ログイン情報 %>
  <div class="login_profile" >
   <h6 class="block_title">ログイン情報</h6>
@@ -65,10 +66,24 @@
  <div class="clip_index">
   <h6 class="block_title">クリップしたレシピ</h6>
  </div>
+ <% end %>
 
  <%# 投稿一覧 %>
- <div class="recipe_index">
-  <h6 class="block_title">投稿したレシピ</h6>
- </div>
-
+  <div class="recipe_index">
+   <h6 class="block_title">投稿したレシピ</h6>
+  </div>
+  <div class="recipes_content">
+   <div class="recipe_lists container">
+      <div class="row">
+       <% @user.recipes.each do |recipe| %>
+        <div class="card col-12 m-1" style="width: 16rem;">
+         <%= image_tag recipe.image, class:"card-img-top w-100 h-100" %>
+         <div class="card-body">
+           <h5 class="card-title recipe_title"><%= recipe.title %></h5>
+         </div>
+        </div>
+       <% end %>
+      </div>
+   </div>
+  </div>
 </div>

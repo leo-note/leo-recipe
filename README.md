@@ -36,6 +36,7 @@
 ## recipe_materials テーブル
 | Column                 | Type       | Options                       |
 | -----------------------|------------|------------------------------ |
+| amount                 | string     | null: false                   |
 | recipe                 | references | null: false,foreign_key: true |
 | material               | references | null: false,foreign_key: true |
 

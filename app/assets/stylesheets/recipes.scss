@@ -4,6 +4,7 @@
   color: #800000;
   font-size: 20px;
   margin-top: 5px;
+  font-weight: bold;
 }
 
 .user_name_link {
@@ -12,3 +13,37 @@
   text-shadow: 1px 1px 2px silver;
 }
 
+.recipes_content {
+  margin-top: 15px;
+}
+
+.recipes_content_title {
+  text-align: center;
+  color: #800000;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: underline;
+  width: auto;
+}
+
+.recipe_lists{
+  margin-top: 5px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.recipe_list{
+  display: block;
+}
+
+.recipe_title, .user_name{
+  color: #800000;
+  font-size: 15px;
+}
+
+/*  new */
+.material {
+  display: flex;
+}

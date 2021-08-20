@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe ProfilesForm, type: :model do
   before do
     @user = FactoryBot.create(:user)
     @profiles_form = FactoryBot.build(:profiles_form, user_id: @user.id)
