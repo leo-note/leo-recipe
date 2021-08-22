@@ -7,6 +7,20 @@
 </div>
 
 <%# 検索box %>
+<div class="search_box_area">
+ <div class="search_box">
+  <%= form_with url:search_recipes_path, method: :get, local: true, class:"form d-flex" do | f | %>
+    <%= f.text_field :keyword, placeholder:"食材で検索", class:"form-control" %>
+    <%= f.submit "検索", class:"btn btn-danger" %>
+  <% end %>
+ </div>
+ <div class="search_message">
+  <%# ローカル環境でrjbを導入する場合 %>
+  <%# 全角で入力してください。アレルギー登録した食材を含むレシピは表示されません。 %>
+  <%# romajiのみを利用する場合 %>
+  全角かなカナで入力してください。アレルギー登録した食材を含むレシピは表示されません。
+ </div>
+</div>
 
 <%# 新着レシピ %>
 <div class="recipes_content">
@@ -22,7 +36,7 @@
           </h5>
           <h5 class='user_name'>
            <%= link_to recipe.user.nickname, user_path(recipe.user.id), class:"user_name_link" %>さんの投稿
-          </h6>
+          </h5>
         </div>
        </div>
      <% end %>

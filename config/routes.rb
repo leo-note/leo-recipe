@@ -5,5 +5,9 @@ Rails.application.routes.draw do
     resources :profiles, only: [:new, :create]
   end
 
-  resources :recipes, only: [:index, :new, :create, :show]
+  resources :recipes, only: [:index, :new, :create, :show] do
+    collection do
+      get 'search'
+    end
+  end
 end
