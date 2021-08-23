@@ -75,10 +75,9 @@ gem 'devise'
 gem 'pry-rails'
 gem 'active_hash'
 gem 'romaji'
-# ローカル環境でJDkを利用できる場合は追加
-gem 'rjb'
-# gem 'kuromoji'
-gem 'kuromoji-ruby', '~> 0.0.1'
-gem 'zipang'
+# ローカル環境でkuromojiを利用できる場合は追加
+# gem 'rjb'
+# gem 'kuromoji',
+# gem 'zipang'
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'

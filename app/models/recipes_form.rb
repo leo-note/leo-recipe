@@ -25,10 +25,10 @@ class RecipesForm
       if name != ''
         blank_flg = 1
 
-        # ローカル環境でrjbを導入する場合 全角以外は登録できない
-        if name.match(/\A[ぁ-んァ-ヶ一-龥々ー]+\z/).nil?
+        # ローカル環境でkuromojiを導入する場合 全角以外は登録できない
+        # if name.match(/\A[ぁ-んァ-ヶ一-龥々ー]+\z/).nil?
         # romajiのみを利用する場合 全角かなカナ以外は登録できない
-        # if name.match(/\A[ぁ-んァ-ヶー]+\z/).nil?
+        if name.match(/\A[ぁ-んァ-ヶー]+\z/).nil?
           errors.add(:names, "is invalid")
           names.clear
         end
@@ -64,10 +64,10 @@ class RecipesForm
       # 食材に入力がないカラムは登録しない
       unless names[i] == ''
         # 食材のローマ字読みを取得
-        # ローカル環境でrjbを導入する場合
-        roman_name = (Zipang.to_slug names[i].romaji).gsub(/\-/, '')
+        # ローカル環境でkuromojiを導入する場合
+        # roman_name = (Zipang.to_slug names[i].romaji).gsub(/\-/, '')
         # romajiのみを利用する場合
-        # roman_name = names[i].romaji
+        roman_name = names[i].romaji
         materials = Material.where(roman_name: roman_name)
 
         # materialテーブルに登録済みの食品か確認する

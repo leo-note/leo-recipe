@@ -79,19 +79,19 @@ RSpec.describe ProfilesForm, type: :model do
         expect(@profiles_form.errors.full_messages).to include("Taste must be other than 1")
       end
 
-      # ローカル環境でrjbを導入する場合
-      it 'nameは全角かなカナ漢字以外は登録できない' do
-        @profiles_form.name = 's蕎麦'
-        @profiles_form.valid?
-        expect(@profiles_form.errors.full_messages).to include("Name is invalid")
-      end
-
-      # romajiのみを利用する場合
-      # it 'nameは全角かなカナ以外は登録できない' do
-      #   @profiles_form.name = 'sそば'
+      # ローカル環境でkuromojiを導入する場合
+      # it 'nameは全角かなカナ漢字以外は登録できない' do
+      #   @profiles_form.name = 's蕎麦'
       #   @profiles_form.valid?
       #   expect(@profiles_form.errors.full_messages).to include("Name is invalid")
       # end
+
+      # romajiのみを利用する場合
+      it 'nameは全角かなカナ以外は登録できない' do
+        @profiles_form.name = 'sそば'
+        @profiles_form.valid?
+        expect(@profiles_form.errors.full_messages).to include("Name is invalid")
+      end
     end
   end
 end
