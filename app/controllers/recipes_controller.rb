@@ -1,5 +1,4 @@
 class RecipesController < ApplicationController
-  require 'romaji/core_ext/string'
   before_action :authenticate_user!, only: [:new, :create]
 
   def index

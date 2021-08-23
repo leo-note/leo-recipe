@@ -13,9 +13,9 @@ class Recipe < ApplicationRecord
   def self.custom_search(keyword,material)
     if keyword != ''
       # ローカル環境でrjbを導入する場合
-      # keyword_roman = (Zipang.to_slug keyword.romaji).gsub(/\-/, '')
+      keyword_roman = (Zipang.to_slug keyword.romaji).gsub(/\-/, '')
       # romajiのみを利用する場合
-      keyword_roman = keyword.romaji
+      # keyword_roman = keyword.romaji
       recipe_result = Recipe.joins(:materials).where('roman_name LIKE(?)', "%#{keyword_roman}%")
       recipes = []
 
@@ -41,9 +41,9 @@ class Recipe < ApplicationRecord
   def self.search(keyword)
     if keyword != ''
       # ローカル環境でrjbを導入する場合
-      # keyword_roman = (Zipang.to_slug keyword.romaji).gsub(/\-/, '')
+      keyword_roman = (Zipang.to_slug keyword.romaji).gsub(/\-/, '')
       # romajiのみを利用する場合
-      keyword_roman = keyword.romaji
+      # keyword_roman = keyword.romaji
       Recipe.joins(:materials).where('roman_name LIKE(?)', "%#{keyword_roman}%")
     end
   end

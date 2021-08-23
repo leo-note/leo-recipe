@@ -19,14 +19,14 @@ class ProfilesForm
   end
   # ローカル環境でrjbを導入する場合
   # materialのname 全角入力チェック
-  # with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }, if: :name_check do
-  #   validates :name
-  # end
-  # romajiのみを利用する場合
-  # materialのname 全角かなカナ入力チェック
-  with_options format: { with: /\A[ぁ-んァ-ヶー]+\z/ }, if: :name_check do
+  with_options format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }, if: :name_check do
     validates :name
   end
+  # romajiのみを利用する場合
+  # materialのname 全角かなカナ入力チェック
+  # with_options format: { with: /\A[ぁ-んァ-ヶー]+\z/ }, if: :name_check do
+  #   validates :name
+  # end
 
   def name_check
     name != ""
@@ -41,9 +41,9 @@ class ProfilesForm
 
       # 食材のローマ字読みを取得
       # ローカル環境でrjbを導入する場合
-      # roman_name = (Zipang.to_slug name.romaji).gsub(/\-/, '')
+      roman_name = (Zipang.to_slug name.romaji).gsub(/\-/, '')
       # romajiのみを利用する場合
-      roman_name = name.romaji
+      # roman_name = name.romaji
       materials = Material.where(roman_name: roman_name)
       # materialテーブルに登録済みの食品か確認する
       if materials.length == 0
