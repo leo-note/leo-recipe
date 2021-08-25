@@ -7,6 +7,7 @@ class Recipe < ApplicationRecord
   has_many :materials, through: :recipe_materials
   has_one_attached :image
   has_many :clips
+  has_many :comments
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
 

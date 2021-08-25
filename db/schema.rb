@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_23_074402) do
+ActiveRecord::Schema.define(version: 2021_08_25_072759) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -56,6 +56,16 @@ ActiveRecord::Schema.define(version: 2021_08_23_074402) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipe_id"], name: "index_clips_on_recipe_id"
     t.index ["user_id"], name: "index_clips_on_user_id"
+  end
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "text", null: false
+    t.bigint "user_id", null: false
+    t.bigint "recipe_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id"], name: "index_comments_on_recipe_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "materials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -114,6 +124,8 @@ ActiveRecord::Schema.define(version: 2021_08_23_074402) do
   add_foreign_key "allergy_materials", "materials"
   add_foreign_key "clips", "recipes"
   add_foreign_key "clips", "users"
+  add_foreign_key "comments", "recipes"
+  add_foreign_key "comments", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "recipe_materials", "materials"
   add_foreign_key "recipe_materials", "recipes"

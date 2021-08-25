@@ -23,12 +23,12 @@
 </div>
 
 <%# おすすめレシピ %>
-<% if !@recommend_resipes.empty? %>
+<% if !@recommend_recipes.empty? %>
  <div class="recipes_content">
    <div class="recipes_content_title"><%= @taste %>な人はこんなお料理を作っています</div>
    <div class="recipe_lists container">
       <div class="row">
-       <% @recommend_resipes.each do |recipe| %>
+       <% @recommend_recipes.each do |recipe| %>
          <div class="card col-12 m-1" style="width: 16rem;">
           <%= link_to image_tag(recipe.image, class:"card-img-top fit_image"), recipe_path(recipe) %>
           <div class="card-body">

@@ -76,4 +76,38 @@
   </div>
  </div>
 
+ <%# コメント欄 %>
+ <div class="recipe_comment">
+  <h5 class="comment_title">コメント一覧</h5>
+  <div class="container-fluid">
+    <div class="row"> 
+      <%= form_with model: @comment, url: recipe_comments_path(@recipe), local: true do |f| %>
+        <div class="col-12"> 
+         <%= f.text_area :text, class:"form-control", placeholder: "お料理の感想や作り方についての質問などを投稿しましょう！" %>
+        </div>
+        <div class="col-12 mt-2 comment_submit_btn">
+         <%= f.submit "投稿", class:"btn btn-danger btn-sm"%>
+        </div>
+      <% end %>
+      <% @comments.each do |comment| %>
+       <div class="card col-12 m-1" style="width: 32rem;">
+          <div class="card-body">
+            <h5 class="comment_text">
+             <%= comment.text %>
+            </h5>
+            <div class="comment_bottom_block">
+             <h5 class="comment_create_time">
+              <%= comment.created_at %>
+             </h5>
+             <h5 class='user_name'>
+              <%= link_to comment.user.nickname, user_path(comment.user.id), class:"user_name_link" %>さんの投稿
+             </h5>
+            </div>
+          </div>
+         </div>
+      <% end %>
+    </div>
+  </div>
+ </div>
+
 </div>

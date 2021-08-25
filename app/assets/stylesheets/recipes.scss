@@ -81,13 +81,13 @@
 
 .recipe_photo {
   margin-top: 20px;
-  width: 30%;
+  width: 40%;
   height: 15%;
 }
 
-.recipe_topics, .recipe_materials, .recipe_text {
+.recipe_topics, .recipe_materials, .recipe_text, .recipe_comment {
   margin-top: 20px;
-  width: 30%;
+  width: 40%;
 }
 
 .topics_top_block {
@@ -113,7 +113,25 @@
   margin-top: 10px;
 }
 
-.material_title, .text_title{
+.material_title, .text_title, .comment_title {
   border-bottom: solid 1px;
   color:#800000;
 }
+
+.comment_submit_btn {
+  text-align: right;
+}
+
+.comment_text {
+  font-size: 15px;
+}
+
+.comment_bottom_block {
+  display: flex;
+  justify-content: space-between;
+}
+.comment_create_time {
+  margin-top: 5px;
+  font-size: 8px;
+  color:#800000;
+} 

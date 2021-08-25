@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.includes(:user).order('created_at DESC')
-    @recommend_resipes = []
+    @recommend_recipes = []
 
     # ログイン状態で、プロフィール登録済みのユーザーにはおすすめレシピを表示する
     if user_signed_in? && !current_user.profile.nil?
@@ -14,7 +14,7 @@ class RecipesController < ApplicationController
         # 自分が投稿したレシピはおすすめに含めない
         unless user.id == current_user.id
          user.recipes.each do |recipe|
-           @recommend_resipes << recipe
+           @recommend_recipes << recipe
          end
         end
       end
@@ -41,6 +41,8 @@ class RecipesController < ApplicationController
     if user_signed_in?
       @clip = Clip.find_by(user_id: current_user.id, recipe_id: @recipe.id)
     end
+    @comment = Comment.new
+    @comments = @recipe.comments.includes(:user).order('created_at DESC')
 
     # JSに渡す変数を定義
     gon.receipe_id = @recipe.id
