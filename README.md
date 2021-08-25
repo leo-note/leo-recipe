@@ -10,7 +10,7 @@
 ### association
 - has_many :recipes
 - has_one :profile
-- has_one :clip
+- has_many :clips
 - has_many :comments
 - has_many :present_orders
 
@@ -27,8 +27,7 @@
 - has_many :comments
 - has_many :recipe_materials
 - has_many :materials, through: :recipe_materials
-- has_many :clip_recipes
-- has_many :clips, through: :clip_recipes
+- has_many :clips
 
 ### Other
 - using ActiveStorage and ActiveHash(category)
@@ -60,20 +59,10 @@
 | Column                 | Type       | Options                       |
 | -----------------------|------------|------------------------------ |
 | user                   | references | null: false,foreign_key: true |
+| recipe                 | references | null: false,foreign_key: true |
 
 ### association 
 - belongs_to :user
-- has_many :clip_recipes
-- has_many :recipes, through: :clip_recipes
-
-## clip_recipes テーブル
-| Column                 | Type       | Options                       |
-| -----------------------|------------|------------------------------ |
-| clip                   | references | null: false,foreign_key: true |
-| recipe                 | references | null: false,foreign_key: true |
-
-### association
-- belongs_to :clip
 - belongs_to :recipe
 
 ## profiles テーブル

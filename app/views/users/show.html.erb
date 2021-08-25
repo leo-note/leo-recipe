@@ -5,87 +5,114 @@
  </div>
 
  <% if user_signed_in? &&@user.id == current_user.id %>
- <%# ログイン情報 %>
- <div class="login_profile" >
-  <h6 class="block_title">ログイン情報</h6>
-  <table class="table">
-   <thead>
-    <tr claas>
-      <th scope="col">nickname</th>
-      <th scope="col">email</th>
-    </tr>
-    </thead>
-   <tbody>
-    <tr>
-      <td><%= @user.nickname %></td>
-      <td><%= @user.email %></td>
-    </tr>
-   </tbody>
-  </table>
- </div>
-
- <%# プロフィール情報 %>
- <div class="user_profile">
-  <h6 class="block_title">プロフィール</h6>
-  <% if @user.profile.nil? %>
-   まだプロフィールが登録されていません。登録は<%= link_to "こちら", new_user_profile_path(@user.id), class:"profile_link"%>
-  <% else %>
+  <%# ログイン情報 %>
+  <div class="login_profile" >
+   <h6 class="block_title">ログイン情報</h6>
    <table class="table">
-   <thead>
-    <tr claas>
-      <th scope="col">性別</th>
-      <th scope="col">家族構成</th>
-      <th scope="col">味の好み</th>
-      <th scope="col">アレルギー</th>
-    </tr>
+    <thead>
+     <tr claas>
+       <th scope="col">nickname</th>
+       <th scope="col">email</th>
+     </tr>
     </thead>
-   <tbody>
-    <tr>
-      <td><%= @user.profile.gender.name %></td>
-      <td><%= @user.profile.family_structure.name %></td>
-      <td><%= @user.profile.taste.name %></td>
-      <td>
-       <% if @allergies.length == 0 %>
-        登録なし
-       <% else %>
-        <%= @material.name %>
-       <% end %>
-      </td>
-    </tr>
-   </tbody>
-  </table>
-  <% end %>
- </div>
+    <tbody>
+     <tr>
+       <td><%= @user.nickname %></td>
+       <td><%= @user.email %></td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
 
- <%# プレゼント申込履歴 %>
- <div class="present_application">
-  <h6 class="block_title">プレゼント申込履歴</h6>
- </div>
+  <%# プロフィール情報 %>
+  <div class="user_profile">
+   <h6 class="block_title">プロフィール</h6>
+   <% if @user.profile.nil? %>
+    まだプロフィールが登録されていません。登録は<%= link_to "こちら", new_user_profile_path(@user.id), class:"profile_link"%>
+   <% else %>
+    <table class="table">
+     <thead>
+      <tr claas>
+       <th scope="col">性別</th>
+       <th scope="col">家族構成</th>
+       <th scope="col">味の好み</th>
+       <th scope="col">アレルギー</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td><%= @user.profile.gender.name %></td>
+       <td><%= @user.profile.family_structure.name %></td>
+       <td><%= @user.profile.taste.name %></td>
+       <td>
+        <% if @allergies.length == 0 %>
+         登録なし
+        <% else %>
+         <%= @material.name %>
+        <% end %>
+       </td>
+      </tr>
+    </tbody>
+   </table>
+   <% end %>
+  </div>
 
- <%# クリップ一覧 %>
- <div class="clip_index">
-  <h6 class="block_title">クリップしたレシピ</h6>
- </div>
+  <%# プレゼント申込履歴 %>
+  <div class="present_application">
+   <h6 class="block_title">プレゼント申込履歴</h6>
+  </div>
+
+  <%# クリップ一覧 %>
+  <div class="clip_index">
+   <h6 class="block_title">クリップしたレシピ</h6>
+  </div>
+  <% unless @clip_recipes.empty? %>
+   <div class="recipes_content">
+    <div class="recipe_lists container">
+       <div class="row">
+        <% @clip_recipes.each do |recipe| %>
+         <div class="card col-12 m-1" style="width: 16rem;">
+          <%= link_to image_tag(recipe.image, class:"card-img-top fit_image"), recipe_path(recipe) %>
+          <div class="card-body">
+           <h5 class="card-title recipe_title">
+            <%= link_to recipe.title, recipe_path(recipe), class:"title_name_link" %>
+           </h5>
+           <h5 class='user_name'>
+            <%= link_to recipe.user.nickname, user_path(recipe.user.id), class:"user_name_link" %>さんの投稿
+           </h5>
+          </div>
+         </div>
+        <% end %>
+       </div>
+    </div>
+   </div>
+  <% else %>
+    まだclipしたレシピはありません。
+  <% end%>
  <% end %>
 
  <%# 投稿一覧 %>
   <div class="recipe_index">
    <h6 class="block_title">投稿したレシピ</h6>
   </div>
-  <div class="recipes_content">
-   <div class="recipe_lists container">
-      <div class="row">
-       <% @user.recipes.each do |recipe| %>
-        <div class="card col-12 m-1" style="width: 16rem;">
-         <%= link_to image_tag(recipe.image, class:"card-img-top fit_image"), recipe_path(recipe) %>
-         <div class="card-body">
-           <h5 class="card-title recipe_title">
-            <%= link_to recipe.title, recipe_path(recipe), class:"title_name_link" %>
-           </h5>
+  <% unless @user.recipes.empty? %>
+   <div class="recipes_content">
+    <div class="recipe_lists container">
+       <div class="row">
+        <% @user.recipes.each do |recipe| %>
+         <div class="card col-12 m-1" style="width: 16rem;">
+          <%= link_to image_tag(recipe.image, class:"card-img-top fit_image"), recipe_path(recipe) %>
+          <div class="card-body">
+            <h5 class="card-title recipe_title">
+             <%= link_to recipe.title, recipe_path(recipe), class:"title_name_link" %>
+            </h5>
+          </div>
          </div>
-        </div>
-       <% end %>
-      </div>
+        <% end %>
+       </div>
+    </div>
    </div>
-  </div>
+  <% else %>
+    まだ投稿したレシピはありません。
+  <% end%>
 </div>

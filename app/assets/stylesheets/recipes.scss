@@ -85,7 +85,7 @@
   height: 15%;
 }
 
-.recipe_topics,  .recipe_materials, .recipe_text {
+.recipe_topics, .recipe_materials, .recipe_text {
   margin-top: 20px;
   width: 30%;
 }
@@ -95,9 +95,22 @@
   justify-content: space-between;
 }
 
+.topics_top_left_block {
+  display: flex;
+  color:#800000;
+}
+
+.clip_count {
+  margin-left: 5px;
+}
+
 .topics_user_name, .topics_category_name {
   color:#800000;
   font-size: 15px;
+}
+
+.topics_category_name {
+  margin-top: 10px;
 }
 
 .material_title, .text_title{

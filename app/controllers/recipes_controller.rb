@@ -22,6 +22,12 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    if user_signed_in?
+      @clip = Clip.find_by(user_id: current_user.id, recipe_id: @recipe.id)
+    end
+
+    # JSに渡す変数を定義
+    gon.receipe_id = @recipe.id
   end
 
   def search
@@ -33,7 +39,7 @@ class RecipesController < ApplicationController
       # 現状の仕様では1食材しか登録できないため配列の１つ目の要素を取得する
       materials = allergies[0].materials
       material = materials[0]
-      @recipes = Recipe.custom_search(@keyword,material)
+      @recipes = Recipe.custom_search(@keyword, material)
 
     else
       @recipes = Recipe.search(@keyword)

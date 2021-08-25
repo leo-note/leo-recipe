@@ -29,7 +29,7 @@ class ProfilesForm
   end
 
   def name_check
-    name != ""
+    name != ''
   end
 
   def save

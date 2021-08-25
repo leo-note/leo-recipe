@@ -12,5 +12,11 @@ class UsersController < ApplicationController
         @material = materials[0]
       end
     end
+
+    # clipしたレシピの情報を取得する
+    @clip_recipes = []
+    @user.clips.each do |clip|
+      @clip_recipes << Recipe.find(clip.recipe_id)
+    end
   end
 end

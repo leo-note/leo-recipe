@@ -6,11 +6,12 @@ class Recipe < ApplicationRecord
   has_many :recipe_materials
   has_many :materials, through: :recipe_materials
   has_one_attached :image
+  has_many :clips
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
 
   # 検索メソッド
-  def self.custom_search(keyword,material)
+  def self.custom_search(keyword, material)
     if keyword != ''
       # ローカル環境でkuromojiを導入する場合
       # keyword_roman = (Zipang.to_slug keyword.romaji).gsub(/\-/, '')
