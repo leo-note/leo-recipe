@@ -4,7 +4,7 @@ class Taste < ActiveHash::Base
     { id: 2, name: '薄味が好き' },
     { id: 3, name: '濃い目が好み' },
     { id: 4, name: '辛いもの大好き' },
-    { id: 5, name: '子ども舌（苦いのは嫌い・・・）' }
+    { id: 5, name: '甘めの味が好き' }
   ]
   include ActiveHash::Associations
   has_many :profiles

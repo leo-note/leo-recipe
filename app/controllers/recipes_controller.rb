@@ -3,6 +3,22 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.includes(:user).order('created_at DESC')
+    @recommend_resipes = []
+
+    # ログイン状態で、プロフィール登録済みのユーザーにはおすすめレシピを表示する
+    if user_signed_in? && !current_user.profile.nil?
+      @taste = current_user.profile.taste.name
+
+      similar_users = User.joins(:profile).where(profiles: { taste_id: current_user.profile.taste.id })
+      similar_users.each do |user|
+        # 自分が投稿したレシピはおすすめに含めない
+        unless user.id == current_user.id
+         user.recipes.each do |recipe|
+           @recommend_resipes << recipe
+         end
+        end
+      end
+    end
   end
 
   def new
