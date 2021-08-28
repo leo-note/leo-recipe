@@ -15,4 +15,5 @@ class User < ApplicationRecord
   has_many :recipes
   has_many :clips
   has_many :comments
+  has_many :present_orders
 end

@@ -19,18 +19,29 @@
   margin-top: 20px;
 }
 
-.profile_link{
+.profile_link, .present_link {
   text-decoration: none;
   color: #800000;
   text-shadow: 1px 1px 2px silver;
 }
 
 .block_title {
+  text-align: center;
+  color: #800000;
+  font-size: 20px;
+  margin-top: 5px;
+  font-weight: bold;
   border-bottom: solid 1px;
 }
 
 .present_application {
   margin-top: 20px;
+}
+
+.present_application_text {
+  text-align: center;
+  font-size: 15px;
+  color: #800000;
 }
 
 .clip_index {

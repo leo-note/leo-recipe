@@ -137,7 +137,7 @@
 | address                | string     | null:false                    |
 | building_name          | string     |                               |
 | phone_number           | string     | null:false                    |
-| present_orser          | references | null: false,foreign_key: true |
+| present_order          | references | null: false,foreign_key: true |
 
 ### association
 - belongs_to :present_order

@@ -1,0 +1,123 @@
+<div class="form_main">
+ <%= form_with model: @present_order_form, url: user_present_orders_path(params[:user_id]), local: true do |f| %>
+  <div class="form_title">プレゼント申し込み</div>
+
+  <div class="present_contents">
+   <div class= "present_contents_title">
+    プレゼント一覧
+   </div>
+   <div class="present_contents_information">
+    投稿したレシピの数に応じてプレゼントがもらえます。（１種につき１回まで）<br />
+    プレゼントを選び、発送先を登録してください。
+   </div>
+   <div class="present_contents_area">
+    <% @presents.each do |present| %>
+     <% unless present.id == 1 %>
+      <div class="card m-1" style="width: 12rem;">
+        <%= image_tag (present.image), class:"card-img-top fit_image" %>
+        <div class="card-body">
+          <h5 class="present_name">
+           <%= present.name %>
+          </h5>
+          <h5 class="present_point">
+           <%= present.point %>投稿で交換可能
+          </h5>
+        </div>
+       </div>
+      <% end %> 
+    <% end %>
+   </div>
+  </div>
+
+ <div class="form_input">
+   <div class= "present_order_title">
+    申し込みフォーム
+   </div>
+   <%= render "shared/error_messages", model: f.object %>
+   <div class="container-fluid">
+    <div class="row w-50 mt-2">
+     <div class="col"> 
+       <%= f.label "プレゼントを選んでください", class:"form-label" %><br />
+       <%= f.collection_select(:present_id, Present.all, :id, :name, {}, {class:"form-control"}) %>
+     </div>
+    </div>
+    <div class="row w-75 mt-2">
+     <div class="col"> 
+      <%= f.label "姓", class:"form-label" %><br />
+      <%= f.text_field :last_name, class:"form-control", placeholder: "日田利", maxlength: "10" %>
+     </div>
+     <div class="col"> 
+      <%= f.label "名", class:"form-label" %><br />
+      <%= f.text_field :first_name, class:"form-control", placeholder: "九津子", maxlength: "10" %>
+     </div>
+     <div class="form-text">
+      姓・名は全角で入力してください。
+     </div>
+    </div>
+    <div class="row w-75 mt-2"> 
+     <div class="col"> 
+      <%= f.label "姓（カナ）", class:"form-label" %><br />
+      <%= f.text_field :last_name_kana, class:"form-control", placeholder: "ぴったり", maxlength: "15" %>
+     </div>
+     <div class="col"> 
+      <%= f.label "名（カナ）", class:"form-label" %><br />
+      <%= f.text_field :first_name_kana, class:"form-control", placeholder: "くつこ", maxlength: "15" %>
+     </div>
+     <div class="form-text">
+      姓（カナ）・名（カナ）は全角カナで入力してください。
+     </div>
+    </div>
+    <div class="row w-50 mt-2">
+     <div class="col"> 
+      <%= f.label "郵便番号", class:"form-label" %><br />
+      <%= f.text_field :postal_code, class:"form-control", placeholder: "XXX-XXXX", maxlength: "8" %>
+      <div class="form-text">
+      ハイフンあり、半角数字で入力してください。
+      </div>
+     </div>
+    </div>
+    <div class="row w-25 mt-2">
+     <div class="col"> 
+      <%= f.label "都道府県", class:"form-label" %><br />
+      <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"form-control"}) %>
+     </div>
+    </div>
+    <div class="row w-25 mt-2"> 
+     <div class="col"> 
+      <%= f.label "市区町村", class:"form-label" %><br />
+      <%= f.text_field :city, class:"form-control", placeholder: "千代田区" %>
+     </div>
+    </div>
+    <div class="row w-75 mt-2">
+     <div class="col"> 
+      <%= f.label "番地", class:"form-label" %><br />
+      <%= f.text_field :address, class:"form-control", placeholder: "千代田１−１−１" %>
+     </div>
+    </div>
+    <div class="row w-75 mt-2"> 
+     <div class="col"> 
+      <%= f.label "建物名", class:"form-label" %><br />
+      <%= f.text_field :building_name, class:"form-control", placeholder: "千代田マンション" %>
+     </div>
+     <div class="form-text">
+      ※建物名の入力は任意です
+     </div>
+    </div>
+    <div class="row w-50 mt-2">
+     <div class="col"> 
+      <%= f.label "電話番号", class:"form-label" %><br />
+      <%= f.text_field :phone_number, class:"form-control", placeholder: "08011112222",maxlength: "11" %>
+     </div>
+     <div class="form-text">
+      ハイフンなし、10桁もしくは11桁の半角数字で入力してください。
+     </div>
+    </div>
+   </div>
+ </div>
+
+  <div class="form_btn">
+   <%= f.submit "登録", class:"btn btn-danger btn-sm"%>
+   <%= link_to "戻る", user_path(params[:user_id]), class:"btn btn-light btn-sm" %>
+  </div> 
+ <% end %>
+</div>

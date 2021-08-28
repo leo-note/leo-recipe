@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_25_072759) do
+ActiveRecord::Schema.define(version: 2021_08_26_015952) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -68,11 +68,36 @@ ActiveRecord::Schema.define(version: 2021_08_25_072759) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "delivery_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "last_name", null: false
+    t.string "first_name", null: false
+    t.string "last_name_kana", null: false
+    t.string "first_name_kana", null: false
+    t.string "postal_code", null: false
+    t.integer "prefecture_id", null: false
+    t.string "city", null: false
+    t.string "address", null: false
+    t.string "building_name"
+    t.string "phone_number", null: false
+    t.bigint "present_order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["present_order_id"], name: "index_delivery_addresses_on_present_order_id"
+  end
+
   create_table "materials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "roman_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "present_orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "present_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_present_orders_on_user_id"
   end
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -126,6 +151,8 @@ ActiveRecord::Schema.define(version: 2021_08_25_072759) do
   add_foreign_key "clips", "users"
   add_foreign_key "comments", "recipes"
   add_foreign_key "comments", "users"
+  add_foreign_key "delivery_addresses", "present_orders"
+  add_foreign_key "present_orders", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "recipe_materials", "materials"
   add_foreign_key "recipe_materials", "recipes"

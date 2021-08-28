@@ -8,7 +8,7 @@
   <%# ログイン情報 %>
   <div class="login_profile" >
    <h6 class="block_title">ログイン情報</h6>
-   <table class="table">
+   <table class="table table-light">
     <thead>
      <tr claas>
        <th scope="col">nickname</th>
@@ -30,7 +30,7 @@
    <% if @user.profile.nil? %>
     まだプロフィールが登録されていません。登録は<%= link_to "こちら", new_user_profile_path(@user.id), class:"profile_link"%>
    <% else %>
-    <table class="table">
+    <table class="table table-light">
      <thead>
       <tr claas>
        <th scope="col">性別</th>
@@ -60,6 +60,31 @@
   <%# プレゼント申込履歴 %>
   <div class="present_application">
    <h6 class="block_title">プレゼント申込履歴</h6>
+   <% if @user.present_orders.empty? %>
+    <h5 class="present_application_text">
+     投稿したレシピの数に応じてプレゼントがもらえます！申し込みは<%= link_to "こちら", new_user_present_order_path(@user.id), class:"present_link"%>
+    </h5>
+   <% else %>
+    <table class="table table-light">
+     <thead>
+      <tr claas>
+       <th scope="col">申し込み日時</th>
+       <th scope="col">商品名</th>
+      </tr>
+     </thead>
+     <tbody>
+      <% @user.present_orders.each do |order| %>
+      <tr>
+       <td><%= order.created_at %></td>
+       <td><%= (Present.find(order.present_id)).name %></td>
+      </tr>
+      <% end %>
+    </tbody>
+   </table>
+    <h5 class="present_application_text">
+     プレゼントの申し込みは<%= link_to "こちら", new_user_present_order_path(@user.id), class:"present_link"%>
+    </h5>
+   <% end %>
   </div>
 
   <%# クリップ一覧 %>

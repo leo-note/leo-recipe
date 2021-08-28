@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     resources :profiles, only: [:new, :create]
+    resources :present_orders, only: [:new, :create]
   end
 
   resources :recipes, only: [:index, :new, :create, :show] do

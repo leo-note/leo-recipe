@@ -13,9 +13,9 @@ class RecipesController < ApplicationController
       similar_users.each do |user|
         # 自分が投稿したレシピはおすすめに含めない
         unless user.id == current_user.id
-         user.recipes.each do |recipe|
-           @recommend_recipes << recipe
-         end
+          user.recipes.each do |recipe|
+            @recommend_recipes << recipe
+          end
         end
       end
     end
