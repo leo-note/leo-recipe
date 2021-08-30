@@ -13,7 +13,7 @@ class RecipesForm
     validates :text
   end
   # activehash 半角数字以外・「---」の時は保存できない
-  with_options numericality: { other_than: 1 } do
+  with_options numericality: { other_than: 1, message: :active_hash_blank } do
     validates :category_id
   end
   # names 文字種、入力なしのチェック
@@ -29,14 +29,14 @@ class RecipesForm
         # if name.match(/\A[ぁ-んァ-ヶ一-龥々ー]+\z/).nil?
         # romajiのみを利用する場合 全角かなカナ以外は登録できない
         if name.match(/\A[ぁ-んァ-ヶー]+\z/).nil?
-          errors.add(:names, "is invalid")
+          errors.add(:names, 'は不正な値です')
           names.clear
         end
       end
     end
 
     if blank_flg.zero?
-      errors.add(:names, "can't be blank")
+      errors.add(:names, 'を入力してください')
       names.clear
     end
   end
@@ -52,7 +52,7 @@ class RecipesForm
     end
 
     if blank_flg.zero?
-      errors.add(:amounts, "can't be blank")
+      errors.add(:amounts, 'を入力してください')
       amounts.clear
     end
   end

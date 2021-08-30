@@ -18,7 +18,7 @@ class PresentOrderForm
     validates :phone_number
   end
   # prefecture_id 半角数字以外・「---」の時は保存できない
-  with_options numericality: { other_than: 1 } do
+  with_options numericality: { other_than: 1, message: :active_hash_blank } do
     validates :prefecture_id
   end
   # name 全角入力のチェック
@@ -41,19 +41,19 @@ class PresentOrderForm
   def present_check
     # presenceチェック
     if present_id.nil?
-      errors.add(:present, "can't be blank")
+      errors.add(:present_id, 'を入力してください')
       return
     end
 
     # numericチェック
     if (present_id.to_s).match(/\A[0-9]+\z/).nil?
-      errors.add(:present, "is not a number")
+      errors.add(:present_id, 'を入力してください')
       return
     end
 
     # 1は登録できない
-    if present_id == 1
-      errors.add(:present, "must be other than 1")
+    if present_id == '1'
+      errors.add(:present_id, 'を入力してください')
       return
     end
 
@@ -65,7 +65,7 @@ class PresentOrderForm
       recipes = user.recipes
       point = present.point
       if point > recipes.length
-        errors.add(:present, "このプレゼント応募には#{point}投稿が必要です")
+        errors.add(:present, 'の応募には#{point}投稿が必要です')
         return
       end
 
@@ -73,7 +73,7 @@ class PresentOrderForm
       present_orders = user.present_orders
       present_orders.each do |order|
         if present.id == order.present_id
-          errors.add(:present, "申し込み済のプレゼントです。受け取りは１つにつき１回までです")
+          errors.add(:present, 'は申し込み済です。受け取りは１つにつき１回までです')
         end
       end
     end
@@ -83,7 +83,7 @@ class PresentOrderForm
     present_order = PresentOrder.create(user_id: user_id, present_id: present_id)
     DeliveryAddress.create(last_name: last_name, first_name: first_name, first_name_kana: first_name_kana,
                            last_name_kana: last_name_kana, postal_code: postal_code, prefecture_id: prefecture_id,
-                           city: city, address: address, building_name: building_name, phone_number: phone_number, 
+                           city: city, address: address, building_name: building_name, phone_number: phone_number,
                            present_order_id: present_order.id)
   end
 end

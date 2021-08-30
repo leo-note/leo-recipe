@@ -2,7 +2,7 @@ class ProfilesForm
   require 'romaji/core_ext/string'
 
   include ActiveModel::Model
-  attr_accessor :user_id, :gender_id, :family_structure_id, :taste_id, :name, :roman_name
+  attr_accessor :user_id, :gender_id, :family_structure_id, :taste_id, :name
 
   # 必須チェック
   with_options presence: true do
@@ -12,7 +12,7 @@ class ProfilesForm
     validates :taste_id
   end
   # activehash 半角数字以外・「---」の時は保存できない
-  with_options numericality: { other_than: 1 } do
+  with_options numericality: { other_than: 1, message: :active_hash_blank } do
     validates :gender_id
     validates :family_structure_id
     validates :taste_id

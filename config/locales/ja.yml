@@ -1,0 +1,49 @@
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M"
+  activerecord:
+    attributes:
+      user:
+        nickname: ユーザーネーム
+      clip:
+        user: ユーザー
+        recipe: レシピ
+      comment:
+        text: コメント
+        user: ユーザー
+        recipe: レシピ
+  activemodel:
+    attributes:
+      recipes_form:
+        title: タイトル
+        image: 写真
+        text: 作り方
+        category_id: カテゴリー
+        names: 材料
+        amounts: 分量
+        user_id: ユーザー
+      profiles_form:
+        gender_id: 性別
+        family_structure_id: 家族構成
+        taste_id: 味の好み
+        name: アレルギー食材
+        user_id: ユーザー
+      present_order_form:
+        present_id: プレゼント
+        present: このプレゼント
+        last_name: 姓
+        first_name: 名
+        last_name_kana: 姓（カナ）
+        first_name_kana: 名（カナ）
+        postal_code: 郵便番号
+        prefecture_id: 都道府県
+        city: 市区町村
+        address: 番地
+        building_name: 建物名
+        phone_number: 電話番号
+        user_id: ユーザー
+  errors:
+    messages:
+      active_hash_blank: を入力してください
+ 

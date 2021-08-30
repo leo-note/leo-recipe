@@ -8,17 +8,17 @@
     <div class="row">
      <div class="col-8"> 
       <%= f.label :nickname, class:"form-label" %><br />
-      <%= f.text_area :nickname, class:"form-control", id: "nickname", autofocus: true, placeholder: "nickname" , maxlength: "20"%>
+      <%= f.text_field :nickname, class:"form-control", id: "nickname", autofocus: true, placeholder: "ユーザーネーム" , maxlength: "20"%>
      </div>
 
      <div class="col-8"> 
       <%= f.label :email, class:"form-label" %><br />
-      <%= f.email_field :email, class:"form-control", id: "email", placeholder: "email" %>
+      <%= f.email_field :email, class:"form-control", id: "email", placeholder: "メールアドレス" %>
      </div>
 
      <div class="col-8"> 
       <%= f.label :password, class:"form-label" %><br />
-      <%= f.password_field :password, class:"form-control", id: "password", placeholder: "password" %>
+      <%= f.password_field :password, class:"form-control", id: "password", placeholder: "パスワード" %>
       <div class="form-text">
        半角英数字<%= @minimum_password_length %>文字以上で入力してください。
       </div>
@@ -26,7 +26,7 @@
 
      <div class="col-8"> 
       <%= f.label :password_confirmation, class:"form-label" %><br />
-      <%= f.password_field :password_confirmation, class:"form-control", id: "password_confirmation", placeholder: "password" %>
+      <%= f.password_field :password_confirmation, class:"form-control", id: "password_confirmation", placeholder: "パスワード（確認用）" %>
       <div class="form-text">
        同じパスワードを入力してください。
       </div> 

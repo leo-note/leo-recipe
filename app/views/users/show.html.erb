@@ -75,7 +75,7 @@
      <tbody>
       <% @user.present_orders.each do |order| %>
       <tr>
-       <td><%= order.created_at %></td>
+       <td><%= l order.created_at %></td>
        <td><%= (Present.find(order.present_id)).name %></td>
       </tr>
       <% end %>

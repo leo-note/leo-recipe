@@ -16,13 +16,13 @@ RSpec.describe Clip, type: :model do
       it 'userがないと登録できない' do
         @clip.user = nil
         @clip.valid?
-        expect(@clip.errors.full_messages).to include("User must exist")
+        expect(@clip.errors.full_messages).to include('ユーザーを入力してください')
       end
 
       it 'recipeがないと登録できない' do
         @clip.recipe = nil
         @clip.valid?
-        expect(@clip.errors.full_messages).to include("Recipe must exist")
+        expect(@clip.errors.full_messages).to include('レシピを入力してください')
       end
     end
   end

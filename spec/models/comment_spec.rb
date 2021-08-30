@@ -16,19 +16,19 @@ RSpec.describe Comment, type: :model do
       it 'textがないと登録できない' do
         @comment.text = ''
         @comment.valid?
-        expect(@comment.errors.full_messages).to include("Text can't be blank")
+        expect(@comment.errors.full_messages).to include('コメントを入力してください')
       end
 
       it 'userがないと登録できない' do
         @comment.user = nil
         @comment.valid?
-        expect(@comment.errors.full_messages).to include("User must exist")
+        expect(@comment.errors.full_messages).to include('ユーザーを入力してください')
       end
 
       it 'recipeがないと登録できない' do
         @comment.recipe = nil
         @comment.valid?
-        expect(@comment.errors.full_messages).to include("Recipe must exist")
+        expect(@comment.errors.full_messages).to include('レシピを入力してください')
       end
     end
   end
