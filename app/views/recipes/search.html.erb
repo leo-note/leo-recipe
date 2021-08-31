@@ -2,7 +2,12 @@
  <% if @recipes.nil? || @recipes.empty? %>
   <div class="recipes_content_title">検索結果はありません</div>
  <% else%>
-  <div class="recipes_content_title"><%= @keyword %>の検索結果</div>
+  <div class="recipes_content_title">
+    <% if @category.id != 1 %>
+     <%= @category.name %>ジャンル 
+    <% end %>
+    <%= @keyword %>の検索結果
+  </div>
   <div class="recipe_lists container">
      <div class="row">
      <% @recipes.each do |recipe| %>

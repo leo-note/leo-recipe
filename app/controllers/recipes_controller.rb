@@ -50,6 +50,7 @@ class RecipesController < ApplicationController
 
   def search
     @keyword = params[:keyword]
+    @category = Category.find(params[:category_id])
 
     if user_signed_in? && !current_user.profile.nil? && !current_user.profile.allergy.nil?
       # アレルギー食材登録がある場合、その食材を含むレシピは除く
@@ -57,10 +58,10 @@ class RecipesController < ApplicationController
       # 現状の仕様では1食材しか登録できないため配列の１つ目の要素を取得する
       materials = allergies[0].materials
       material = materials[0]
-      @recipes = Recipe.custom_search(@keyword, material)
+      @recipes = Recipe.custom_search(@keyword, material, @category.id)
 
     else
-      @recipes = Recipe.search(@keyword)
+      @recipes = Recipe.search(@keyword, @category.id)
     end
   end
 

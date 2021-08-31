@@ -10,8 +10,9 @@
 <div class="search_box_area">
  <div class="search_box">
   <%= form_with url:search_recipes_path, method: :get, local: true, class:"form d-flex" do | f | %>
-    <%= f.text_field :keyword, placeholder:"食材で検索", class:"form-control" %>
-    <%= f.submit "検索", class:"btn btn-danger" %>
+    <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"form-control search_box_element"}) %>
+    <%= f.text_field :keyword, placeholder:"食材で検索", class:"form-control search_box_element" %>
+    <%= f.submit "検索", class:"btn btn-danger search_box_element" %>
   <% end %>
  </div>
  <div class="search_message">

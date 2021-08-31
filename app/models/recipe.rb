@@ -12,7 +12,7 @@ class Recipe < ApplicationRecord
   belongs_to :category
 
   # 検索メソッド
-  def self.custom_search(keyword, material)
+  def self.custom_search(keyword, material, category)
     if keyword != ''
       # ローカル環境でkuromojiを導入する場合
       # keyword_roman = (Zipang.to_slug keyword.romaji).gsub(/\-/, '')
@@ -36,17 +36,43 @@ class Recipe < ApplicationRecord
         end
       end
 
-      return recipes
+      # カテゴリーの指定がある場合はそのカテゴリーのレシピのみ出力する
+      if category != 1
+        category_recipes = category_recipe_search(recipes, category)
+        return category_recipes
+      else
+        return recipes
+      end
     end
   end
 
-  def self.search(keyword)
+  def self.search(keyword, category)
     if keyword != ''
       # ローカル環境でkuromojiを導入する場合
       # keyword_roman = (Zipang.to_slug keyword.romaji).gsub(/\-/, '')
       # romajiのみを利用する場合
       keyword_roman = keyword.romaji
-      Recipe.joins(:materials).where('roman_name LIKE(?)', "%#{keyword_roman}%")
+      recipes = Recipe.joins(:materials).where('roman_name LIKE(?)', "%#{keyword_roman}%")
+
+      # カテゴリーの指定がある場合はそのカテゴリーのレシピのみ出力する
+      if category != 1
+        category_recipes = category_recipe_search(recipes, category)
+        return category_recipes
+      else
+        return recipes
+      end
     end
   end
+end
+
+def category_recipe_search(recipes, category)
+  category_recipes = []
+
+  recipes.each do |recipe|
+    if recipe.category_id == category
+      category_recipes << recipe
+    end
+  end
+
+  return category_recipes
 end
