@@ -65,7 +65,7 @@ class PresentOrderForm
       recipes = user.recipes
       point = present.point
       if point > recipes.length
-        errors.add(:present, 'の応募には#{point}投稿が必要です')
+        errors.add(:present, "の応募には#{point}投稿が必要です")
         return
       end
 
