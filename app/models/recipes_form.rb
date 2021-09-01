@@ -71,7 +71,7 @@ class RecipesForm
         materials = Material.where(roman_name: roman_name)
 
         # materialテーブルに登録済みの食品か確認する
-        if materials.length == 0
+        if materials.empty?
           material = Material.create(name: names[i], roman_name: roman_name)
           RecipeMaterial.create(recipe_id: recipe.id, material_id: material.id, amount: amounts[i])
         else

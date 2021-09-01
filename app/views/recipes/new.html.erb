@@ -4,47 +4,51 @@
   <%= render "shared/error_messages", model: f.object %>
 
   <div class="form_input">
-   <div class="container-fluid">
-    <div class="row">
-     <div class="col-8"> 
+   <div class="container_fluid">
+    <div class="row mt-1">
+     <div class="col"> 
        <%= f.label "タイトル", class:"form-label" %><br />
        <%= f.text_field :title, class:"form-control", id: "recipe_title", placeholder: "タイトル", maxlength: "20" %>
      </div>
-
-     <div class="col-8"> 
+    </div>
+    <div class="row w-50 mt-2">
+     <div class="col"> 
        <%= f.label "写真", class:"form-label" %><br />
        <%= f.file_field :image, class:"form-control-file", id: "recipe_image" %>
      </div>
-     <div id="image_preview"></div>
-
-     <div class="col-8"> 
+    </div>
+    <div class="row mt-1">
+     <div class="col" id="image_preview"></div>
+    </div>
+    <div class="row w-75 mt-2">
+     <div class="col"> 
       <%= f.label "カテゴリー", class:"form-label" %><br />
       <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"form-control", id:"recipe-category"}) %>
      </div>
-
-     <div class="material">
-      <div class="col-6 form-inline">
+    </div> 
+     <div class="material row mt-2">
+      <div class="col form-inline">
        <%= f.label "材料", class:"form-label" %><br />
        <%= f.text_field :names, name: "recipes_form[names][]", class:"form-control", id: "material_name", placeholder: "にんじん", maxlength: "10" %>
       </div> 
-      <div class="col-6 form-inline"> 
+      <div class="col form-inline"> 
        <%= f.label "分量", class:"form-label" %><br />
        <%= f.text_field :amounts, name: "recipes_form[amounts][]", class:"form-control", id: "recipe_amount", placeholder: "1本", maxlength: "10" %>
       </div>
      </div>
-     <div class="material">
-      <div class="col-6 form-inline">
+     <div class="material row mt-1">
+      <div class="col form-inline">
        <%= f.text_field :names, name: "recipes_form[names][]", class:"form-control", id: "material_name", placeholder: "たまねぎ", maxlength: "10" %>
       </div> 
-      <div class="col-6 form-inline"> 
+      <div class="col form-inline"> 
        <%= f.text_field :amounts, name: "recipes_form[amounts][]", class:"form-control", id: "recipe_amount", placeholder: "1/2個", maxlength: "10" %>
       </div>
      </div>
-     <div class="material">
-      <div class="col-6 form-inline">
+     <div class="material row mt-1">
+      <div class="col form-inline">
        <%= f.text_field :names, name: "recipes_form[names][]", class:"form-control", id: "material_name", placeholder: "さとう", maxlength: "10" %>
       </div> 
-      <div class="col-6 form-inline"> 
+      <div class="col form-inline"> 
        <%= f.text_field :amounts, name: "recipes_form[amounts][]", class:"form-control", id: "recipe_amount", placeholder: "大さじ2", maxlength: "10" %>
       </div>
      </div>
@@ -54,14 +58,14 @@
       <%# 材料は全角で入力してください。 %>
       <%# romajiのみを利用する場合 %>
       材料は全角かな・カナで入力してください。
+     </div> 
+     <div class="btn btn-light btn-sm mt-1" id="add_btn" >材料を追加</div>
+     <div class="row mt-2">
+      <div class="col"> 
+       <%= f.label "作り方", class:"form-label" %><br />
+       <%= f.text_area :text, class:"form-control", id: "recipe_text", placeholder: "にんじんを1口大に切る。弱火で15分煮込む。など、わかりやすく書きましょう！" %>
+      </div>
      </div>
-     <div class="btn btn-light btn-sm w-auto" id="add_btn" >材料を追加</div>
-
-     <div class="col-12"> 
-      <%= f.label "作り方", class:"form-label" %><br />
-      <%= f.text_area :text, class:"form-control", id: "recipe_text", placeholder: "にんじんを1口大に切る。弱火で15分煮込む。など、わかりやすく書きましょう！" %>
-     </div>
-    </div>
    </div>
   </div>
 

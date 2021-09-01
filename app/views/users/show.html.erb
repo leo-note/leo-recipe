@@ -4,7 +4,7 @@
    <%= @user.nickname %>さんのマイページ
  </div>
 
- <% if user_signed_in? &&@user.id == current_user.id %>
+ <% if user_signed_in? && @user.id == current_user.id %>
   <%# ログイン情報 %>
   <div class="login_profile" >
    <h6 class="block_title">ログイン情報</h6>
@@ -28,7 +28,9 @@
   <div class="user_profile">
    <h6 class="block_title">プロフィール</h6>
    <% if @user.profile.nil? %>
-    まだプロフィールが登録されていません。登録は<%= link_to "こちら", new_user_profile_path(@user.id), class:"profile_link"%>
+    <h5 class="block_text">
+     まだプロフィールが登録されていません。登録は<%= link_to "こちら", new_user_profile_path(@user.id), class:"profile_link"%>
+    </h5>
    <% else %>
     <table class="table table-light">
      <thead>
@@ -45,7 +47,7 @@
        <td><%= @user.profile.family_structure.name %></td>
        <td><%= @user.profile.taste.name %></td>
        <td>
-        <% if @allergies.length == 0 %>
+        <% if @allergies.empty? %>
          登録なし
         <% else %>
          <%= @material.name %>
@@ -61,7 +63,7 @@
   <div class="present_application">
    <h6 class="block_title">プレゼント申込履歴</h6>
    <% if @user.present_orders.empty? %>
-    <h5 class="present_application_text">
+    <h5 class="block_text">
      投稿したレシピの数に応じてプレゼントがもらえます！申し込みは<%= link_to "こちら", new_user_present_order_path(@user.id), class:"present_link"%>
     </h5>
    <% else %>
@@ -81,7 +83,7 @@
       <% end %>
     </tbody>
    </table>
-    <h5 class="present_application_text">
+    <h5 class="block_text">
      プレゼントの申し込みは<%= link_to "こちら", new_user_present_order_path(@user.id), class:"present_link"%>
     </h5>
    <% end %>
@@ -93,26 +95,12 @@
   </div>
   <% unless @clip_recipes.empty? %>
    <div class="recipes_content">
-    <div class="recipe_lists container">
-       <div class="row">
-        <% @clip_recipes.each do |recipe| %>
-         <div class="card col-12 m-1" style="width: 16rem;">
-          <%= link_to image_tag(recipe.image, class:"card-img-top fit_image"), recipe_path(recipe) %>
-          <div class="card-body">
-           <h5 class="card-title recipe_title">
-            <%= link_to recipe.title, recipe_path(recipe), class:"title_name_link" %>
-           </h5>
-           <h5 class='user_name'>
-            <%= link_to recipe.user.nickname, user_path(recipe.user.id), class:"user_name_link" %>さんの投稿
-           </h5>
-          </div>
-         </div>
-        <% end %>
-       </div>
-    </div>
+    <%= render partial: "shared/recipe_container", locals: { recipes: @clip_recipes } %>
    </div>
   <% else %>
+   <h5 class="block_text">
     まだclipしたレシピはありません。
+   </h5> 
   <% end%>
  <% end %>
 
@@ -122,22 +110,11 @@
   </div>
   <% unless @user.recipes.empty? %>
    <div class="recipes_content">
-    <div class="recipe_lists container">
-       <div class="row">
-        <% @user.recipes.each do |recipe| %>
-         <div class="card col-12 m-1" style="width: 16rem;">
-          <%= link_to image_tag(recipe.image, class:"card-img-top fit_image"), recipe_path(recipe) %>
-          <div class="card-body">
-            <h5 class="card-title recipe_title">
-             <%= link_to recipe.title, recipe_path(recipe), class:"title_name_link" %>
-            </h5>
-          </div>
-         </div>
-        <% end %>
-       </div>
-    </div>
+    <%= render partial: "shared/recipe_container", locals: { recipes: @user.recipes } %>
    </div>
   <% else %>
+   <h5 class="block_text">
     まだ投稿したレシピはありません。
+   </h5> 
   <% end%>
 </div>

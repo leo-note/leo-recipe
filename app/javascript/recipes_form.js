@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
       // 表示する画像を生成
       const blobImage = document.createElement('img');
       blobImage.setAttribute('src', blob);
-      blobImage.setAttribute('height', "15%");
-      blobImage.setAttribute('width', "15%");
+      blobImage.setAttribute('height', "150px");
+      blobImage.setAttribute('width', "250px");
 
       // 画像の表示
       imageElement.appendChild(blobImage);
@@ -38,11 +38,11 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('add_btn').addEventListener('click', function(e){
       // 材料、分量の親要素
       const Material = document.createElement('div');
-      Material.setAttribute('class', 'material');
+      Material.setAttribute('class', 'material row mt-1');
 
       // 材料の要素
       const MaterialNameArea = document.createElement('div');
-      MaterialNameArea.setAttribute('class','col-6 form-inline');
+      MaterialNameArea.setAttribute('class','col form-inline');
 
       const MaterialName = document.createElement('input');
       MaterialName.setAttribute('type','text');
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
       MaterialNameArea.appendChild(MaterialName);
       // 分量の要素
       const AmountArea = document.createElement('div');
-      AmountArea.setAttribute('class','col-6 form-inline');
+      AmountArea.setAttribute('class','col form-inline');
 
       const Amount = document.createElement('input');
       Amount.setAttribute('type','text');
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // 要素の追加
       Material.appendChild(MaterialNameArea);
-      Material.appendChild(Amount);
+      Material.appendChild(AmountArea);
       const MaterialAddArea = document.getElementById('material_add_area');
       MaterialAddArea.appendChild(Material);
     });

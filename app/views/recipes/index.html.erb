@@ -27,44 +27,12 @@
 <% if !@recommend_recipes.empty? %>
  <div class="recipes_content">
    <div class="recipes_content_title"><%= @taste %>な人はこんなお料理を作っています</div>
-   <div class="recipe_lists container">
-      <div class="row">
-       <% @recommend_recipes.each do |recipe| %>
-         <div class="card col-12 m-1" style="width: 16rem;">
-          <%= link_to image_tag(recipe.image, class:"card-img-top fit_image"), recipe_path(recipe) %>
-          <div class="card-body">
-            <h5 class="card-title recipe_title">
-             <%= link_to recipe.title, recipe_path(recipe), class:"title_name_link" %>
-            </h5>
-            <h5 class='user_name'>
-             <%= link_to recipe.user.nickname, user_path(recipe.user.id), class:"user_name_link" %>さんの投稿
-            </h5>
-          </div>
-         </div>
-       <% end %>
-      </div>
-   </div>
+  <%= render partial: "shared/recipe_container", locals: { recipes: @recommend_recipes } %>
  </div>
 <% end %>
 
 <%# 新着レシピ %>
 <div class="recipes_content">
   <div class="recipes_content_title">新着レシピ</div>
-  <div class="recipe_lists container">
-     <div class="row">
-     <% @recipes.each do |recipe| %>
-       <div class="card col-12 m-1" style="width: 16rem;">
-        <%= link_to image_tag(recipe.image, class:"card-img-top fit_image"), recipe_path(recipe) %>
-        <div class="card-body">
-          <h5 class="card-title recipe_title">
-           <%= link_to recipe.title, recipe_path(recipe), class:"title_name_link" %>
-          </h5>
-          <h5 class='user_name'>
-           <%= link_to recipe.user.nickname, user_path(recipe.user.id), class:"user_name_link" %>さんの投稿
-          </h5>
-        </div>
-       </div>
-     <% end %>
-    </div>
-  </div>
+  <%= render partial: "shared/recipe_container", locals: { recipes: @recipes } %>
 </div>

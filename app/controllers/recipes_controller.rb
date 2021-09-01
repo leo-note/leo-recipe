@@ -9,15 +9,8 @@ class RecipesController < ApplicationController
     if user_signed_in? && !current_user.profile.nil?
       @taste = current_user.profile.taste.name
 
-      similar_users = User.joins(:profile).where(profiles: { taste_id: current_user.profile.taste.id })
-      similar_users.each do |user|
-        # 自分が投稿したレシピはおすすめに含めない
-        unless user.id == current_user.id
-          user.recipes.each do |recipe|
-            @recommend_recipes << recipe
-          end
-        end
-      end
+      taste_id = current_user.profile.taste.id
+      @recommend_recipes = SearchRecipesService.recommend_search(current_user.id, taste_id)
     end
   end
 
@@ -52,16 +45,34 @@ class RecipesController < ApplicationController
     @keyword = params[:keyword]
     @category = Category.find(params[:category_id])
 
-    if user_signed_in? && !current_user.profile.nil? && !current_user.profile.allergy.nil?
-      # アレルギー食材登録がある場合、その食材を含むレシピは除く
-      allergies = Allergy.where(profile_id: current_user.profile.id)
-      # 現状の仕様では1食材しか登録できないため配列の１つ目の要素を取得する
-      materials = allergies[0].materials
-      material = materials[0]
-      @recipes = Recipe.custom_search(@keyword, material, @category.id)
-
+    if params[:keyword] == '' && params[:category_id].nil?
+      # 検索ワード・カテゴリーの入力がない場合、検索を行わない
+      @recepes = []
     else
-      @recipes = Recipe.search(@keyword, @category.id)
+      # アレルギー有無の判定
+      if user_signed_in? && !current_user.profile.nil? && !current_user.profile.allergy.nil?
+        # アレルギー食材登録がある場合、その食材を含むレシピは除く
+        allergies = Allergy.where(profile_id: current_user.profile.id)
+        # 現状の仕様では1食材しか登録できないため配列の１つ目の要素を取得する
+        materials = allergies[0].materials
+        material = materials[0]
+
+        if params[:keyword] == ''
+          # 検索ワードの入力がない場合、カテゴリのみで検索を行う
+          recipes = SearchRecipesService.no_word_search(@category.id)
+        else
+          recipes = SearchRecipesService.search(@keyword, @category.id)
+        end
+        @recipes = SearchRecipesService.allergy_search(recipes, material)
+      else
+
+        if params[:keyword] == ''
+          # 検索ワードの入力がない場合、カテゴリのみで検索を行う
+          @recipes = SearchRecipesService.no_word_search(@category.id)
+        else
+          @recipes = SearchRecipesService.search(@keyword, @category.id)
+        end
+      end
     end
   end
 

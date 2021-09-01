@@ -22,9 +22,8 @@ class PresentOrdersController < ApplicationController
   private
 
   def move_page
-    user = User.find(params[:user_id])
-
-    if current_user.id != user.id
+    # 自分以外のユーザーのページへの遷移は回避する
+    if current_user.id != params[:user_id].to_i
       redirect_to root_path
     end
   end

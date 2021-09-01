@@ -46,7 +46,7 @@ class ProfilesForm
       roman_name = name.romaji
       materials = Material.where(roman_name: roman_name)
       # materialテーブルに登録済みの食品か確認する
-      if materials.length == 0
+      if materials.empty?
         material = Material.create(name: name, roman_name: roman_name)
         AllergyMaterial.create(allergy_id: allergy.id, material_id: material.id)
       else

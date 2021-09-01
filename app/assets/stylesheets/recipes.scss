@@ -1,39 +1,4 @@
-/* index */
-.greeting_message {
-  text-align: center;
-  color: #800000;
-  font-size: 20px;
-  margin-top: 5px;
-  font-weight: bold;
-}
-
-.user_name_link, .title_name_link{
-  font-weight: bold;
-  text-decoration: none;
-  color: #800000;
-  text-shadow: 1px 1px 2px silver;
-}
-
-.search_box_area{
-  margin-top: 15px;
-}
-
-.search_box {
-  display: flex;
-  justify-content: center;
-}
-
-.search_box_element {
-  margin-left: 3px;
-}
-
-.search_message{
-  margin-top: 3px;
-  text-align: center;
-  font-size: 10px;
-  color: #800000;
-}
-
+/* レシピ一覧表示のスタイル */
 .recipes_content {
   margin-top: 15px;
 }
@@ -70,9 +35,40 @@
   height: 150px;
   }
 
-/*  new */
-.material {
+/* index */
+.greeting_message {
+  text-align: center;
+  color: #800000;
+  font-size: 20px;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.user_name_link, .title_name_link{
+  font-weight: bold;
+  text-decoration: none;
+  color: #800000;
+  text-shadow: 1px 1px 2px silver;
+}
+
+.search_box_area{
+  margin-top: 15px;
+}
+
+.search_box {
   display: flex;
+  justify-content: center;
+}
+
+.search_box_element {
+  margin-left: 3px;
+}
+
+.search_message{
+  margin-top: 3px;
+  text-align: center;
+  font-size: 10px;
+  color: #800000;
 }
 
 /* show */

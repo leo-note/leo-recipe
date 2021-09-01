@@ -1,4 +1,3 @@
-
 <div class="form_main">
  <%= form_with model: @user, url: user_session_path, local: true do |f| %>
   <div class="form_title">ログイン</div>
@@ -10,18 +9,17 @@
 
   <div class="form_input">
    <div class="container-fluid">
-    <div class="row">
-    
-     <div class="col-8"> 
+    <div class="row mt-1">
+     <div class="col"> 
       <%= f.label :email, class:"form-label" %><br />
-      <%= f.email_field :email, class:"form-control", id: "email", placeholder: "メールアドレス", autofocus: true %>
+      <%= f.email_field :email, class:"form-control", placeholder: "メールアドレス", autofocus: true %>
      </div>
-
-     <div class="col-8"> 
+    </div> 
+    <div class="row mt-2">
+     <div class="col"> 
       <%= f.label :password, class:"form-label" %><br />
-      <%= f.password_field :password, class:"form-control", id: "password", placeholder: "パスワード" %>
+      <%= f.password_field :password, class:"form-control", placeholder: "パスワード" %>
      </div>
-
     </div>
    </div>
   </div>
