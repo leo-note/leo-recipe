@@ -25,6 +25,9 @@ class RecipesController < ApplicationController
       @recipes_form.save
       redirect_to root_path
     else
+      # JSに渡すデータを定義
+      gon.names = @recipes_form.names
+      gon.amounts = @recipes_form.amounts
       render :new
     end
   end

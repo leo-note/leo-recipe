@@ -25,31 +25,37 @@
       <%= f.label "カテゴリー", class:"form-label" %><br />
       <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"form-control", id:"recipe-category"}) %>
      </div>
-    </div> 
-     <div class="material row mt-2">
+    </div>
+    <div class="row mt-2">
       <div class="col form-inline">
-       <%= f.label "材料", class:"form-label" %><br />
-       <%= f.text_field :names, name: "recipes_form[names][]", class:"form-control", id: "material_name", placeholder: "にんじん", maxlength: "10" %>
-      </div> 
+       <%= f.label "材料", class:"form-label" %>
+      </div>
+      <div class="col form-inline">
+       <%= f.label "分量", class:"form-label" %>
+      </div>
+    </div>
+     <div class="material row mt-1" id="material1">
+      <div class="col form-inline">
+       <%= f.text_field :names, name: "recipes_form[names][]", class:"form-control material_name", id:"material_name_1", placeholder: "にんじん", maxlength: "10" %>
+      </div>
       <div class="col form-inline"> 
-       <%= f.label "分量", class:"form-label" %><br />
-       <%= f.text_field :amounts, name: "recipes_form[amounts][]", class:"form-control", id: "recipe_amount", placeholder: "1本", maxlength: "10" %>
+       <%= f.text_field :amounts, name: "recipes_form[amounts][]", class:"form-control recipe_amount", id:"recipe_amount_1", placeholder: "1本", maxlength: "10" %>
       </div>
      </div>
-     <div class="material row mt-1">
+     <div class="material row mt-1" id="material2">
       <div class="col form-inline">
-       <%= f.text_field :names, name: "recipes_form[names][]", class:"form-control", id: "material_name", placeholder: "たまねぎ", maxlength: "10" %>
+       <%= f.text_field :names, name: "recipes_form[names][]", class:"form-control material_name", id:"material_name_2", placeholder: "たまねぎ", maxlength: "10" %>
       </div> 
       <div class="col form-inline"> 
-       <%= f.text_field :amounts, name: "recipes_form[amounts][]", class:"form-control", id: "recipe_amount", placeholder: "1/2個", maxlength: "10" %>
+       <%= f.text_field :amounts, name: "recipes_form[amounts][]", class:"form-control recipe_amount", id:"recipe_amount_2", placeholder: "1/2個", maxlength: "10" %>
       </div>
      </div>
-     <div class="material row mt-1">
+     <div class="material row mt-1" id="material3">
       <div class="col form-inline">
-       <%= f.text_field :names, name: "recipes_form[names][]", class:"form-control", id: "material_name", placeholder: "さとう", maxlength: "10" %>
+       <%= f.text_field :names, name: "recipes_form[names][]", class:"form-control material_name", id:"material_name_3", placeholder: "さとう", maxlength: "10" %>
       </div> 
       <div class="col form-inline"> 
-       <%= f.text_field :amounts, name: "recipes_form[amounts][]", class:"form-control", id: "recipe_amount", placeholder: "大さじ2", maxlength: "10" %>
+       <%= f.text_field :amounts, name: "recipes_form[amounts][]", class:"form-control recipe_amount", id:"recipe_amount_3", placeholder: "大さじ1", maxlength: "10" %>
       </div>
      </div>
      <div id="material_add_area"></div>

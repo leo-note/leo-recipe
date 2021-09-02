@@ -30,7 +30,6 @@ class RecipesForm
         # romajiのみを利用する場合 全角かなカナ以外は登録できない
         if name.match(/\A[ぁ-んァ-ヶー]+\z/).nil?
           errors.add(:names, 'は不正な値です')
-          names.clear
         end
       end
     end
@@ -38,6 +37,7 @@ class RecipesForm
     if blank_flg.zero?
       errors.add(:names, 'を入力してください')
       names.clear
+      amounts.clear
     end
   end
   # amounts 入力なしのチェック
