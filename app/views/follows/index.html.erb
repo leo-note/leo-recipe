@@ -1,0 +1,22 @@
+<%# フォロー中ユーザーの投稿レシピ%>
+<div class="recipes_content">
+  <div class="recipes_content_title">フォロー中ユーザーのレシピ</div>
+  <% unless @recipes.empty? %>
+    <%= render partial: "shared/recipe_container", locals: { recipes: @recipes } %>
+  <% else %>
+    <h5 class="folloee_recipe_text">まだフォローしたユーザーがいません。おすすめから探してみましょう！</h5>
+  <% end %>  
+</div>
+<%# フォローおすすめユーザーの投稿レシピ %>
+<div class="recipes_content">
+  <div class="recipes_content_title">おすすめユーザーのレシピ</div>
+  <% unless @user.profile.nil? %>
+    <% unless @recommend_user_recipes.empty? %>
+     <%= render partial: "shared/recipe_container", locals: { recipes: @recommend_user_recipes } %>
+    <% else %>
+     <h5 class="folloee_recipe_text">表示できるおすすめがありません。</h5>
+    <% end %> 
+  <% else %>
+    <h5 class="folloee_recipe_text">プロフィールが未登録です。マイページから登録してみましょう！</h5>
+  <% end %>  
+</div>

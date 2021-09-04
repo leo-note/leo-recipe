@@ -2,6 +2,21 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
+    # ユーザーフォロー情報を取得する
+    @followers = @user.followings
+    if user_signed_in?
+      @followees = current_user.reverse_of_followings
+      @follow_flg = 0
+
+      @followees.each do |followee|
+        if followee.id == @user.id
+          @follow_flg = 1
+        end
+      end
+    end
+    # JSに渡す変数を定義
+    gon.user_id = @user.id
+
     # アレルギー食品の情報を取得する
     if !@user.profile.nil?
       @allergies = Allergy.where(profile_id: @user.profile.id)

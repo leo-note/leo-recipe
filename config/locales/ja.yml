@@ -13,6 +13,9 @@ ja:
         text: コメント
         user: ユーザー
         recipe: レシピ
+      follow:
+        followee: フォロイー
+        follower: フォロワー
   activemodel:
     attributes:
       recipes_form:

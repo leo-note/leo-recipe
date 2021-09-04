@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :profiles, only: [:new, :create]
     resources :present_orders, only: [:new, :create]
+    resources :follows, only: [:index, :create]
   end
 
   resources :recipes, only: [:index, :new, :create, :show] do
@@ -15,5 +16,4 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
-
 end

@@ -14,6 +14,11 @@
 - has_many :comments
 - has_many :present_orders
 
+- has_many :follows
+- has_many :followings, through: :follows, source: :follower
+- has_many :reverse_of_follows, class_name: 'Follow', foreign_key: 'follower_id'
+- has_many :reverse_of_followings, through: :reverse_of_follows, source: :followee_id
+
 ## recipes テーブル
 | Column                 | Type       | Options                       |
 | -----------------------|------------|------------------------------ |
@@ -144,3 +149,13 @@
 
 ### Other
 - using ActiveHash(prefecture)
+
+## followテーブル
+| Column                 | Type       | Options                           |
+| -----------------------|------------|---------------------------------- |
+| followee               | references | foreign_key: { to_table: :users } |
+| follower               | references | foreign_key: { to_table: :users } |
+
+### association
+- belongs_to :followee, class_name: "User"
+- belongs_to :follower, class_name: "User"

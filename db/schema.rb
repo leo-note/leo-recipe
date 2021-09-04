@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_26_015952) do
+ActiveRecord::Schema.define(version: 2021_09_03_075508) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -85,6 +85,16 @@ ActiveRecord::Schema.define(version: 2021_08_26_015952) do
     t.index ["present_order_id"], name: "index_delivery_addresses_on_present_order_id"
   end
 
+  create_table "follows", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "followee_id", null: false
+    t.bigint "follower_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["followee_id", "follower_id"], name: "index_follows_on_followee_id_and_follower_id", unique: true
+    t.index ["followee_id"], name: "index_follows_on_followee_id"
+    t.index ["follower_id"], name: "index_follows_on_follower_id"
+  end
+
   create_table "materials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "roman_name", null: false
@@ -152,6 +162,8 @@ ActiveRecord::Schema.define(version: 2021_08_26_015952) do
   add_foreign_key "comments", "recipes"
   add_foreign_key "comments", "users"
   add_foreign_key "delivery_addresses", "present_orders"
+  add_foreign_key "follows", "users", column: "followee_id"
+  add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "present_orders", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "recipe_materials", "materials"
