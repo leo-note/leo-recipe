@@ -80,13 +80,19 @@
  <div class="recipe_comment">
   <h5 class="comment_title">コメント一覧</h5>
   <div class="container-fluid">
-    <div class="row"> 
-      <%= form_with model: @comment, url: recipe_comments_path(@recipe), local: true do |f| %>
+    <div class="row">
+      <% if user_signed_in? %>
+        <%= form_with model: @comment, url: recipe_comments_path(@recipe), local: true do |f| %>
+          <div class="col-12"> 
+           <%= f.text_area :text, class:"form-control", placeholder: "お料理の感想や作り方についての質問などを投稿しましょう！" %>
+          </div>
+          <div class="col-12 mt-2 comment_submit_btn">
+           <%= f.submit "投稿", class:"btn btn-danger btn-sm"%>
+          </div>
+        <% end %>
+      <% else %>
         <div class="col-12"> 
-         <%= f.text_area :text, class:"form-control", placeholder: "お料理の感想や作り方についての質問などを投稿しましょう！" %>
-        </div>
-        <div class="col-12 mt-2 comment_submit_btn">
-         <%= f.submit "投稿", class:"btn btn-danger btn-sm"%>
+          <h5 class="comment_form_message">ログインすると、コメント投稿が可能です。</h5>
         </div>
       <% end %>
       <% @comments.each do |comment| %>
