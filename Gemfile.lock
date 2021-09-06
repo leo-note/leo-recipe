@@ -332,6 +332,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_hash
+  activesupport
   aws-sdk-s3
   bootsnap (>= 1.4.2)
   byebug
